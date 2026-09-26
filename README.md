@@ -1,5 +1,30 @@
 # Neo4j Mini Agentic Hack
 
+## Railway Customer Support Demo
+
+RailAssist demonstrates the mini-hack's required memory journey: teach a passenger's trip and support issue, persist connected context, then ask a follow-up and see the agent use the saved PNR, route, issue, assistance need, and railway guidance.
+
+### Run
+
+```bash
+source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+Without complete Neo4j credentials, the app runs in local preview mode and persists demo memory in `.railway_demo.sqlite3`. To demonstrate Neo4j, set `NEO4J_URI`, `NEO4J_USERNAME`, `NEO4J_PASSWORD`, and `NEO4J_DATABASE` in `.env`. Use a write-enabled database account. The app creates `Passenger`, `Trip`, `Station`, `RailRoute`, `Issue`, `SupportInteraction`, `SupportNeed`, and `Policy` nodes and connects them with relationships such as `HAS_TRIP`, `HAS_ISSUE`, `HAD_INTERACTION`, and `GUIDED_BY`.
+
+For generated answers, optionally set `OPENAI_API_KEY` and `OPENAI_MODEL` in `.env`. Without a key, the app uses a local memory-guided response; if the model call fails, it falls back to that response. Use fictional passenger data when sending context to an external model.
+
+### Three-minute demo
+
+1. Keep passenger ID `PAX-1042` and save the sample journey in **Teach the agent**.
+2. Show the retrieved trip and issue in **Retrieved memory**; open **Memory graph** to show the connected model.
+3. Ask “It's still delayed. What should I do?” The answer should include the saved train, PNR, route, open issue, and any assistance request.
+4. Refresh the app and ask again to demonstrate persistence. In Aura mode, the memory is stored in Neo4j; local preview uses SQLite and is clearly labeled.
+
+The prototype does not query live train status, issue refunds, or determine ticket eligibility. Confirm operational information through official railway channels.
+
 ## Workshop Content
 
 [Complete the workshop to receive a Neo4j Certificate of Completion](https://github.com/neo4j-graphacademy/workshop-hackathon).
