@@ -56,7 +56,7 @@ A finished production application is not required. A working experiment and usef
 
 ## Feedback
 
-_Add your feedback here._
+_Share your feedback here._
 
 ## Hackathon Tools
 
